@@ -306,3 +306,39 @@ body
 {
   color:#313453;
 }
+
+.buttonPopup
+{
+  height: 30px;
+  width: 130px;
+  background-color: #313453;
+  color: #eeeeee;
+  border-radius: 5px;
+  border: 2px solid #eeeeee;
+  color:#eeeeee;
+  font-size: 20px;
+  display: block;
+  margin: 2%;
+}
+
+.buttonPopup:hover
+{
+  color:#dddddd;
+  border-color: #dddddd;
+  cursor: pointer;
+  background-color: #424564;
+}
+
+.buttonPopup:active
+{
+  color:#bbbbbb;
+  border-color: #bbbbbb;
+  background-color: #646786;
+}
+
+.buttonBot
+{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
