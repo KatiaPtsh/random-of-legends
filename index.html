@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./style.css"/>
+        <script src="./app.js" defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href=".\img\favicon.ico">
+        <title>Random of Legends</title>
+    </head>
+    <body>
+
+        <div id="mainMenu">
+            <h1 id="titrePage">Random Of Legends</h1>
+
+
+            <div class="containerButtons">
+                <button class="buttonStyle" onclick=popupRole()>Lane</button></br>
+                <button class="buttonStyle" onclick=popupChampion()>Champion</button></br>
+                <button class="buttonStyle" onclick=popupGenerateRandom()>Random</button>
+            </div>
+        </div>
+
+        <!-- POPUP -->
+        <div id="popup-overlay">
+
+            <!-- ROLE -->
+            <div id="popup-content-role">
+                <div id="listRole">
+                    <!--<label class="checkboxStyle"><input type="checkbox" name="checkbox">All</label>-->
+                    <label class="checkboxStyle"><input type="checkbox" name="checkbox"><p>Top</p></label>
+                    <label class="checkboxStyle"><input type="checkbox" name="checkbox"><p>Mid</p></label>
+                    <label class="checkboxStyle"><input type="checkbox" name="checkbox"><p>Jungle</p></label>
+                    <label class="checkboxStyle"><input type="checkbox" name="checkbox"><p>ADC</p></label>
+                    <label class="checkboxStyle"><input type="checkbox" name="checkbox"><p>Support</p></label>
+                    <div class="barButtons">
+                        <button class="popup-exit" onclick=popupRole()>x</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAMPION -->
+            <div id="popup-content-champion">
+                <div id="listChampion">
+                    <p id="testProut"></p>
+                    <div class="barButtons">
+                        <button class="popup-exit" onclick=popupChampion()>x</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULT -->
+            <div id="popup-content-result">
+                <div id="randomResult">
+                    <h3 class="titrePopup">
+                        <label id="randomRole">ROLE</label>
+                        <label id="randomChampion">CHAMPION</label>
+                    </h3>
+                    <div id="imgChampion">
+                    </div>
+                    <div class="barButtons">
+                        <!--<a class="fa" href="javascript:void(0)" onclick="generateRoleAndChampion()">⎌</a>-->
+                        <button class="popup-exit" onclick=popupGenerateRandom()>x</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>
