@@ -59,7 +59,7 @@ var champWithRole = {
     "Jhin" : ["adc"],
     "Jinx" : ["adc"],
     "KSante" : ["top"],
-    "KaiSa" : ["adc"],
+    "Kaisa" : ["adc"],
     "Kalista" : ["adc"],
     "Karma" : ["support", "mid"],
     "Karthus" : ["jungle", "adc"],
