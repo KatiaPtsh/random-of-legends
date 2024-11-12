@@ -340,6 +340,10 @@ function generateChampion()
     {
         nameChampTmp = nameChampTmp + nameSplit[1];
     }
+    else if(nameChampTmp == "Wukong")
+    {
+        nameChampTmp = "MonkeyKing";
+    }    
     let urlChamp = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + nameChampTmp + "_" + numImgChamp + ".jpg";
     imgChamp.style.backgroundImage = "url(" + urlChamp + ")";
     return;
