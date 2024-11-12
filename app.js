@@ -9,6 +9,7 @@ var champWithRole = {
     "Akali": ["top", "mid"],
     "Akshan": ["adc", "mid"],
     "Alistar": ["support"],
+    "Ambessa": ["top"],
     "Amumu": ["jungle", "support"],
     "Anivia": ["mid", "support"],
     "Annie": ["mid", "support"],
