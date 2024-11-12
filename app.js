@@ -18,7 +18,7 @@ var champWithRole = {
     "Aurora": ["mid"],
     "Azir": ["mid"],
     "Bard": ["support"],
-    "BelVeth": ["jungle"],
+    "Belveth": ["jungle"],
     "Blitzcrank": ["support"],
     "Brand" : ["mid", "jungle", "support"],
     "Braum" : ["support"],

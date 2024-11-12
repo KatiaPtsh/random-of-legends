@@ -249,9 +249,15 @@ body
   text-align: center;
 }
 
+.requinbaleine
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 #imgChampion
 {
-  background-image: url("./img/champion.jpg");
   background-size: cover;
   width: 500px;
   border: 3px solid #6a83aa;
