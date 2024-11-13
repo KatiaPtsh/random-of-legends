@@ -215,6 +215,8 @@ body
 {
   display: inherit;
   padding: 30px;
+  margin-bottom: -9%;
+
 }
 
 #listChampion
@@ -227,6 +229,7 @@ body
 {
   display: inherit;
   padding: 30px;
+  margin-bottom: -5%;
 }
 
 #randomResult
@@ -254,6 +257,18 @@ body
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 200px;
+  margin-top: 5%;
+  margin-left: 30%;
+}
+
+.internetlost
+{
+  display: flex;
+  width: 5px;
+  text-align: center;
+  margin-left: 30%;
+  
 }
 
 #imgChampion
