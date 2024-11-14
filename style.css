@@ -260,6 +260,7 @@ body
   width: 200px;
   margin-top: 5%;
   margin-left: 30%;
+  z-index: 1;
 }
 
 .internetlost
@@ -268,7 +269,7 @@ body
   width: 5px;
   text-align: center;
   margin-left: 30%;
-  
+  z-index: 1;
 }
 
 #imgChampion

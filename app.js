@@ -358,28 +358,44 @@ function generateRoleAndChampion()
 }
 
 // Pop-up
+var popupActive = false;
 function popupRole()
 {
     popupOpenID("#listRole");
+    return;
 }
 
 function popupChampion()
 {
     popupOpenID("#listChampion");
+    return;
 }
 
 function popupGenerateRandom()
 {
     popupOpenID("#randomResult");
+    return;
 }
 
 function popupOpenID(name)
 {
-    generateRoleAndChampion();
     let popup = document.querySelector("#popup-overlay");
-    popup.classList.toggle("open");
     let content = document.querySelector(name);
-    content.classList.toggle("open");
+    if(popupActive)
+    {
+        popup.classList.toggle("open");
+        popupActive = false;
+        document.getElementById("imgChampion").style.backgroundImage = "none";
+        content.classList.toggle("open");
+    }
+    else
+    {
+        generateRoleAndChampion();
+        popup.classList.toggle("open");
+        popupActive = true;
+        content.classList.toggle("open");
+    }
+    return;
 }
 
 
