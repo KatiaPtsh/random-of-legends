@@ -199,7 +199,7 @@ function initMyChampionWithRole()
     }
     return;
 }
-
+const checkboxesChampion = new Map();
 localStorage.clear();                 // Activer cette ligne pour réinitialiser les champions par défaut pour l'utilisateur
 initMyChampionWithRole();
 console.log(getMyChampionsWithRole());  // Pour le debug
@@ -244,7 +244,7 @@ function getChampions()
 }
 
 // Différentes Array pour exploiter les données
-const roles = getRoles();
+const roles = [];
 const champions = getChampions();
 const championsTop = [];
 const championsMid = [];
@@ -295,8 +295,18 @@ var lastIndexChampion = -1;
 var lastNameChampion = "";
 function generateRole()
 {
-    lastIndexRole = randomNumberInRange(lastIndexRole, 0, (roles.length - 1));
-    lastNameRole = getRoles()[lastIndexRole];
+    getRoles().forEach(e =>
+        {
+            if((document.querySelector("#" + e + ":checked") == "on"))
+            {
+                console.log(document.querySelector("#" + e + ":checked"))
+                roles.push(e);
+            }
+
+        });
+        lastIndexRole = randomNumberInRange(lastIndexRole, 0, (roles.length - 1));
+        console.log(roles);
+    lastNameRole = roles[lastIndexRole];
     document.getElementById("randomRole").innerHTML = lastNameRole;
     return;
 }
@@ -335,6 +345,7 @@ function generateChampion()
     }
     document.getElementById("randomChampion").innerHTML = lastNameChampion;
     let imgChamp = document.getElementById("imgChampion");
+    console.log(lastNameChampion);
     let nameSplit = lastNameChampion.split(" ");
     let nameChampTmp = nameSplit[0];
     if (nameSplit[1] != undefined)
@@ -394,6 +405,7 @@ function popupOpenID(name)
         popup.classList.toggle("open");
         popupActive = true;
         content.classList.toggle("open");
+        console.log(document.querySelector( "#" + "Akali" + ":checked").value);
     }
     return;
 }
@@ -407,9 +419,11 @@ function createCheckboxChamp(name, isChecked, containerId)
     let newCheckbox = document.createElement("input");
     newCheckbox.type = "checkbox";
     newCheckbox.name = "checkbox";
+    newCheckbox.id = name;
     newCheckbox.checked = isChecked;
     let newP = document.createElement("p");
     newP.innerHTML = name;
+    checkboxesChampion.set(name, isChecked);
     newLabel.appendChild(newCheckbox);
     newLabel.appendChild(newP);
     document.getElementById(containerId).appendChild(newLabel);
