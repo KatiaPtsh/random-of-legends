@@ -21,8 +21,9 @@
 *
 {
   margin:0;
-  padding:0;
+  padding: 15px;;
   text-transform: uppercase;
+  cursor: url("./img/Poro.cur"), auto;
 }
 
 body
@@ -199,7 +200,7 @@ body
 
 .buttonStyle:hover
 {
-  cursor: pointer;
+  cursor: url("./img/roar.png"), auto;
   background-color: #9db6dd;
 }
 
