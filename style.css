@@ -438,7 +438,7 @@ button:hover
   left: 50%;
   transform: translate(-50%, -50%);
   height: 500px;
-  width: 800px;
+  width: 700px;
   background-color: #8ca5cc;
   color: #eeeeee;
   border-radius: 20px;
@@ -446,6 +446,7 @@ button:hover
   font-size: 70%;
   z-index: 999;
   font-family: 'Bryndan Write';
+  margin-top: 3%;
 }
 
 .modal.open {
@@ -458,11 +459,13 @@ button:hover
   background-color: #8ca5cc;
   color: #eeeeee;
   border-radius: 20px;
-  padding: 20px;
+  padding: 0px;
   width: 100%;
   max-width: 2000px;
   font-size: 200%;
   margin-right: 20px;
+  padding-left: 15px;
+  padding-right: 20%;
 }
 
 textarea {
@@ -474,10 +477,11 @@ textarea {
   background-color: #eeeeee;
   border: 2px solid #6a83aa;
   cursor: url("./img/roar.png"), auto;
+  resize: none;
 }
 
 label[for="name"] {
-  margin-bottom: 10px; /* Adds space between label and input */
+  margin-bottom: 5px; /* Adds space between label and input */
   text-align: left;
   display: block;
   margin-bottom: 5px;
@@ -541,6 +545,7 @@ input[type="text"], input[type="message"] {
   box-shadow: none;
   border: none;
   font-family: 'Bryndan Write';
+  margin-bottom: 0;
 }
 
 #thankYouPopup {
@@ -550,14 +555,13 @@ input[type="text"], input[type="message"] {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.5); /* optionnel, pour l'arrière-plan */
+  background: none;
   padding: 20px; /* Ajoutez du padding pour le popup */
 }
 
 #thankYouPopup .modal-content {
   display: inline-block; /* Ajuste la taille en fonction du contenu */
   padding: 20px;
-  /*background-color: #8ca5cc;*/
   border-radius: 10px;
   text-align: center;
   font-size: 2.5em; /* Ajuste la taille du texte si nécessaire */

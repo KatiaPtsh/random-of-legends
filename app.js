@@ -430,6 +430,7 @@ function openThankYouPopup() {
 function closeAllPopups() {
   contactPopup.style.display = "none";
   thankYouPopup.style.display = "none";
+  thankYouPopup.style.border = "none";
 }
 
 // Réinitialiser le formulaire
@@ -446,9 +447,9 @@ contactForm.addEventListener("submit", function (event) {
   thankYouPopup.style.display = "flex";
   //openThankYouPopup(); // Ouvre le popup de remerciement
   resetContactForm(); // Réinitialise le formulaire
-  //setTimeout(function() {
-    //thankYouPopup.style.display = "none";
-  //}, 3000); // Ferme le popup de remerciement après 3 secondes
+  setTimeout(function() {
+    thankYouPopup.style.display = "none";
+  }, 3000); // Ferme le popup de remerciement après 3 secondes
 });
 
 // Fermer les popups lorsque l'utilisateur clique sur "close"
