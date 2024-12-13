@@ -230,58 +230,17 @@ function randomNumberInRange(lastValue, minValue, maxValue)
     return randomNumber;
 }
 
-
-// Récupère tous les rôles
-function getRoles()
-{
-    return ["top", "mid", "jungle", "adc", "support"];
-}
-
-// Récupère tous les champions
-function getChampions()
-{
-    return Object.keys(champWithRole);
-}
-
 // Différentes Array pour exploiter les données
 const roles = [];
-const champions = getChampions();
+//const champions = getChampions();
 const championsTop = [];
 const championsMid = [];
 const championsJungle = [];
 const championsADC = [];
 const championsSupport = [];
 
-// Créations des Array pour exploiter les données
-function initChampWithRole()
-{
-    for(const champion in champWithRole)
-    {
-        if (champWithRole[champion].find((r) => r == roles[0]))
-        {
-            championsTop.push(champion);
-        }
-        if (champWithRole[champion].find((r) => r == roles[1]))
-        {
-            championsMid.push(champion);
-        }
-        if (champWithRole[champion].find((r) => r == roles[2]))
-        {
-            championsJungle.push(champion);
-        }
-        if (champWithRole[champion].find((r) => r == roles[3]))
-        {
-            championsADC.push(champion);
-        }
-        if (champWithRole[champion].find((r) => r == roles[4]))
-        {
-            championsSupport.push(champion);
-        }
-    }
-}
-
 // Initialisation des Array de données
-initChampWithRole();
+//initChampWithRole();
 console.log(championsTop);      // Pour le debug
 console.log(championsMid);      // Pour le debug
 console.log(championsJungle);   // Pour le debug
@@ -429,12 +388,12 @@ function createCheckboxChamp(name, isChecked, containerId)
     document.getElementById(containerId).appendChild(newLabel);
     return;
 }
-
+/*
 createCheckboxChamp("all", true, "testProut")
 champions.forEach(e =>{
     createCheckboxChamp(e, true, "testProut");
 });
-
+*/
 
 const openFormButton = document.getElementById("contactButton");
 const modal = document.getElementById("popupForm");
@@ -503,4 +462,3 @@ window.addEventListener("click", function (event) {
     closeAllPopups();
   }
 });
-
