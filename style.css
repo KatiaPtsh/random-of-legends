@@ -21,9 +21,9 @@
 *
 {
   margin:0;
-  padding: 15px;;
+  padding: 15px;
   text-transform: uppercase;
-  cursor: url("./img/Poro.cur"), auto;
+  cursor: url("./img/Porocool.png"), auto;
 }
 
 body
@@ -81,7 +81,7 @@ body
   #titrePage center
   {
     display: inline;
-  };
+  }
 }
 
 @media screen and (max-width: 1100px) {
@@ -107,8 +107,8 @@ body
   padding: 2px;
   background-color: #fed37a;
   border-radius: 10px;
-  border: 2px solid #313453;
-  color:#313453;
+  border: 2px solid #6a83aa;
+  color:#6a83aa;
   display: inline-flex;
   width: 120px;
   text-align: center;
@@ -148,8 +148,8 @@ body
   padding: 2px;
   background-color: #fed37a;
   border-radius: 10px;
-  border: 2px solid #313453;
-  color:#313453;
+  border: 2px solid #6a83aa;
+  color:#6a83aa;
   display: inline-flex;
   width: 210px;
   text-align: center;
@@ -206,7 +206,7 @@ body
 
 .buttonStyle:active
 {
-  background-color: #afd8ff;
+  background-color: #9db6dd;
 }
 
 #popup-overlay
@@ -325,7 +325,7 @@ body
   top:-11px;
   right:-7px;
   text-decoration:none;
-  color:#313453;
+  color:#6a83aa;
   padding:5px;
   font-size: 40px;
 }
@@ -341,7 +341,7 @@ body
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: lowercase;
-  background-color: #313453;
+  background-color: #536685;
   border-radius: 5px;
   border: 2px solid #eeeeee;
   color:#eeeeee;
@@ -371,7 +371,7 @@ body
 {
   height: 30px;
   width: 130px;
-  background-color: #313453;
+  background-color: #6a83aa;
   color: #eeeeee;
   border-radius: 5px;
   border: 2px solid #eeeeee;
@@ -402,3 +402,150 @@ body
   display: flex;
   flex-direction: column;
 }
+
+
+#contactButton {
+  position: fixed;
+  bottom: 20px;  
+  right: 20px;
+  z-index: 1000;
+  height: 40px;
+  width: 120px;
+  background-color: #8ca5cc;
+  color: #eeeeee;
+  border-radius: 20px;
+  border: 2px solid #6a83aa;
+  font-size: 100%;
+  font-family: 'Bryndan Write';
+  text-align: center;
+  line-height: 1.5;
+  display: inline-block;
+  padding: 5px 20px;
+}
+
+button:hover
+{
+  cursor: url("./img/roar.png"), auto;
+  background-color: #9db6dd;
+}
+
+
+.modal {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position : fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: 800px;
+  background-color: #8ca5cc;
+  color: #eeeeee;
+  border-radius: 20px;
+  border: 2px solid #6a83aa;
+  font-size: 70%;
+  z-index: 999;
+  font-family: 'Bryndan Write';
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #8ca5cc;
+  color: #eeeeee;
+  border-radius: 20px;
+  border: 2px solid #6a83aa;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%;
+  max-width: 2000px;
+  font-size: 200%;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  font-size: 16px;
+  padding: 10px;
+}
+
+label[for="name"] {
+  margin-bottom: 10px; /* Adds space between label and input */
+  text-align: left;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="name"] {
+  width: 50%;
+  height: 20px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px; /* Adds space between fields */
+  text-align: left;
+}
+
+label[for="email"] {
+  margin-bottom: 10px; /* Adds space between label and input */
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="email"] {
+  width: 50%;
+  height: 20px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px; /* Adds space between fields */
+}
+
+label[for="message"] {
+  margin-bottom: 10px; /* Adds space between label and input */
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="message"] {
+  width: 50%;
+  height: 20px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px; /* Adds space between fields */
+}
+
+
+.close {
+  color: #cccccc;
+  background-color: #536685;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 15px;
+  padding: 5px;
+  padding-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  line-height: 30px;
+}
+
+.close:hover {
+  cursor: url("./img/roar.png"), auto;
+  background-color: #9db6dd;
+  color:#dddddd;
+  border-color: #dddddd;
+  background-color: #6a83aa;
+}
+
+
+
+
+

@@ -450,3 +450,27 @@ if (bouton) {
 } else {
     console.error("L'élément avec l'ID 'bouton_1' n'a pas été trouvé.");
 }*/
+const openFormButton = document.getElementById("contactButton");
+const modal = document.getElementById("popupForm");
+const closeButton = document.getElementsByClassName("close")[0];
+
+openFormButton.onclick = function() {
+  modal.style.display = "flex";
+}
+
+closeButton.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  alert("Thank you !");
+  modal.style.display = "none";
+});
+
