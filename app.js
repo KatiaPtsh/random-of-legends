@@ -462,3 +462,5 @@ window.addEventListener("click", function (event) {
     closeAllPopups();
   }
 });
+const champ = new Champions();
+console.log(champ.getRoles());
