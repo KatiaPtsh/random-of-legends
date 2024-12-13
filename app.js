@@ -435,21 +435,7 @@ champions.forEach(e =>{
     createCheckboxChamp(e, true, "testProut");
 });
 
-// <label class="checkboxStyle"><input type="checkbox" name="checkbox"><p>Top</p></label>
-/*
-// Cibler l'élément avec l'ID "bouton_1"
-const bouton = document.getElementById('bouton_1');
 
-// Vérifier si l'élément a été correctement ciblé
-if (bouton) {
-    // Ajouter un gestionnaire d'événement pour l'événement "click"
-    bouton.addEventListener('click', function() {
-        alert('Le bouton a été cliqué !');
-        // Autres actions à effectuer lorsque le bouton est cliqué
-    });
-} else {
-    console.error("L'élément avec l'ID 'bouton_1' n'a pas été trouvé.");
-}*/
 const openFormButton = document.getElementById("contactButton");
 const modal = document.getElementById("popupForm");
 const closeButton = document.getElementsByClassName("close")[0];
