@@ -463,4 +463,8 @@ window.addEventListener("click", function (event) {
   }
 });
 const champ = new Champions();
-console.log(champ.getRoles());
+if (champ.getRoles() != null){
+console.log("Okkkkkkkk");
+} else {
+    console.log("Noooooooooon");
+}
