@@ -21,7 +21,6 @@
 *
 {
   margin:0;
-  padding: 15px;
   text-transform: uppercase;
   cursor: url("./img/Porocool.png"), auto;
 }
@@ -459,19 +458,22 @@ button:hover
   background-color: #8ca5cc;
   color: #eeeeee;
   border-radius: 20px;
-  border: 2px solid #6a83aa;
   padding: 20px;
-  border: 1px solid #888;
   width: 100%;
   max-width: 2000px;
   font-size: 200%;
+  margin-right: 20px;
 }
 
 textarea {
+  border-radius: 20px;
   width: 100%;
   height: 150px;
   font-size: 16px;
   padding: 10px;
+  background-color: #eeeeee;
+  border: 2px solid #6a83aa;
+  cursor: url("./img/roar.png"), auto;
 }
 
 label[for="name"] {
@@ -488,6 +490,10 @@ input[type="text"], input[type="name"] {
   padding: 10px;
   margin-bottom: 20px; /* Adds space between fields */
   text-align: left;
+  border-radius: 20px;
+  border: 2px solid #6a83aa;
+  background-color: #eeeeee;
+  cursor: url("./img/roar.png"), auto;
 }
 
 label[for="email"] {
@@ -502,6 +508,11 @@ input[type="text"], input[type="email"] {
   font-size: 16px;
   padding: 10px;
   margin-bottom: 20px; /* Adds space between fields */
+  border-radius: 20px;
+  box-shadow: none;
+  border: 2px solid #6a83aa;
+  background-color: #eeeeee;
+  cursor: url("./img/roar.png"), auto;
 }
 
 label[for="message"] {
@@ -518,6 +529,54 @@ input[type="text"], input[type="message"] {
   margin-bottom: 20px; /* Adds space between fields */
 }
 
+.sendButton{
+  height: 30px;
+  width: 130px;
+  background-color: #536685;
+  border-radius: 5px;
+  color:#cccccc;
+  font-size: 25px;
+  display: block;
+  margin: 2%;
+  box-shadow: none;
+  border: none;
+  font-family: 'Bryndan Write';
+}
+
+#thankYouPopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5); /* optionnel, pour l'arrière-plan */
+  padding: 20px; /* Ajoutez du padding pour le popup */
+}
+
+#thankYouPopup .modal-content {
+  display: inline-block; /* Ajuste la taille en fonction du contenu */
+  padding: 20px;
+  /*background-color: #8ca5cc;*/
+  border-radius: 10px;
+  text-align: center;
+  font-size: 2.5em; /* Ajuste la taille du texte si nécessaire */
+  border: 2px solid #6a83aa;
+  color: #eeeeee;
+  max-width: 80%; /* Réduit la largeur pour éviter trop d'espace */
+  margin: 0;
+  height: auto;
+  width: auto;
+  box-shadow: none;
+}
+
+
+.sendButton:hover{
+  background-color: #536685;
+  color:#dddddd;
+  border-color: #dddddd;
+  background-color: #6a83aa;
+}
 
 .close {
   color: #cccccc;
@@ -535,6 +594,7 @@ input[type="text"], input[type="message"] {
   text-align: center;
   align-items: center;
   line-height: 30px;
+  border-radius: 5px;
 }
 
 .close:hover {
@@ -544,8 +604,6 @@ input[type="text"], input[type="message"] {
   border-color: #dddddd;
   background-color: #6a83aa;
 }
-
-
 
 
 

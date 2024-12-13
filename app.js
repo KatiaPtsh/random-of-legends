@@ -454,9 +454,53 @@ window.onclick = function(event) {
   }
 }
 
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  alert("Thank you !");
+
+
+// Références des éléments
+const contactForm = document.getElementById("contactForm");
+const contactPopup = document.getElementById("popupForm");
+const thankYouPopup = document.getElementById("thankYouPopup");
+const closeButtons = document.querySelectorAll(".close");
+
+// Ouvrir le popup de remerciement
+function openThankYouPopup() {
+  thankYouPopup.style.display = "flex";
+}
+
+// Fermer tous les popups
+function closeAllPopups() {
+  contactPopup.style.display = "none";
+  thankYouPopup.style.display = "none";
+}
+
+// Réinitialiser le formulaire
+function resetContactForm() {
+  contactForm.reset();
+}
+
+// Lors de la soumission du formulaire
+contactForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Empêche l'envoi réel du formulaire
+  closeAllPopups(); // Ferme le popup actuel
   modal.style.display = "none";
+  const thankYouPopup = document.getElementById("thankYouPopup");
+  thankYouPopup.style.display = "flex";
+  //openThankYouPopup(); // Ouvre le popup de remerciement
+  resetContactForm(); // Réinitialise le formulaire
+  //setTimeout(function() {
+    //thankYouPopup.style.display = "none";
+  //}, 3000); // Ferme le popup de remerciement après 3 secondes
+});
+
+// Fermer les popups lorsque l'utilisateur clique sur "close"
+closeButtons.forEach((btn) => {
+  btn.addEventListener("click", closeAllPopups);
+});
+
+// Fermer les popups lorsqu'on clique en dehors
+window.addEventListener("click", function (event) {
+  if (event.target === contactPopup || event.target === thankYouPopup) {
+    closeAllPopups();
+  }
 });
 
