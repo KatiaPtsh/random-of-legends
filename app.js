@@ -1,208 +1,1169 @@
 "use strict";
 
-// DATA
-// Champions et roles
-var numImgChamp = 0;
-var champWithRole = {
-    "Aatrox": ["top"],
-    "Ahri": ["mid"],
-    "Akali": ["top", "mid"],
-    "Akshan": ["adc", "mid"],
-    "Alistar": ["support"],
-    "Ambessa": ["top"],
-    "Amumu": ["jungle", "support"],
-    "Anivia": ["mid", "support"],
-    "Annie": ["mid", "support"],
-    "Aphelios": ["adc"],
-    "Ashe": ["adc", "support"],
-    "Aurelion Sol": ["mid"],
-    "Aurora": ["mid"],
-    "Azir": ["mid"],
-    "Bard": ["support"],
-    "Belveth": ["jungle"],
-    "Blitzcrank": ["support"],
-    "Brand" : ["mid", "jungle", "support"],
-    "Braum" : ["support"],
-    "Briar" : ["jungle"],
-    "Caitlyn" : ["adc"],
-    "Camille" : ["top", "support"],
-    "Cassiopeia" : ["mid"],
-    "Chogath" : ["top"],
-    "Corki" : ["mid"],
-    "Darius" : ["top"],
-    "Diana" : ["jungle", "mid"],
-    "Dr Mundo" : ["top"],
-    "Draven" : ["adc"],
-    "Ekko": ["jungle", "mid"],
-    "Elise" : ["jungle"],
-    "Evelynn" : ["jungle"],
-    "Ezreal" : ["adc"],
-    "Fiddlesticks" : ["jungle", "support"],
-    "Fiora" : ["top"],
-    "Fizz" : ["mid"],
-    "Galio" : ["mid", "support"],
-    "Gangplank" : ["top"],
-    "Garen" : ["top"],
-    "Gnar" : ["top"],
-    "Gragas" : ["top", "mid", "jungle"],
-    "Graves" : ["jungle"],
-    "Gwen" : ["top"],
-    "Hecarim" : ["jungle"],
-    "Heimerdinger" : ["mid", "support"],
-    "Hwei" : ["mid", "support"],
-    "Illaoi" : ["top"],
-    "Irelia" : ["top", "mid"],
-    "Ivern" : ["jungle", "support"],
-    "Janna" : ["support"],
-    "Jarvan IV" : ["jungle"],
-    "Jax" : ["top", "jungle"],
-    "Jayce" : ["top", "mid"],
-    "Jhin" : ["adc"],
-    "Jinx" : ["adc"],
-    "KSante" : ["top"],
-    "Kaisa" : ["adc"],
-    "Kalista" : ["adc"],
-    "Karma" : ["support", "mid"],
-    "Karthus" : ["jungle", "adc"],
-    "Kassadin" : ["mid"],
-    "Katarina" : ["mid"],
-    "Kayle" : ["top"],
-    "Kayn" : ["jungle"],
-    "Kennen" : ["top"],
-    "Khazix" : ["jungle"],
-    "Kindred" : ["jungle"],
-    "Kled" : ["top"],
-    "KogMaw" : ["adc"],
-    "Leblanc" : ["mid"],
-    "Lee Sin" : ["jungle"],
-    "Leona" : ["support"],
-    "Lillia" : ["jungle"],
-    "Lissandra" : ["mid"],
-    "Lucian" : ["adc"],
-    "Lulu" : ["support"],
-    "Lux" : ["support", "mid"],
-    "Maitre Yi" : ["jungle"],
-    "Malphite" : ["top", "mid", "support"],
-    "Malzahar" : ["mid"],
-    "Maokai" : ["support", "jungle"],
-    "Milio" : ["support"],
-    "Miss Fortune" : ["adc"],
-    "Mordekaiser" : ["top"],
-    "Morgana" : ["support", "mid", "jungle"],
-    "Naafiri" : ["mid"],
-    "Nami" : ["support"],
-    "Nasus" : ["top"],
-    "Nautilus" : ["support"],
-    "Neeko" : ["mid", "support"],
-    "Nidalee" : ["jungle"],
-    "Nilah" : ["adc"],
-    "Nocturne" : ["jungle"],
-    "Nunu" : ["jungle"],
-    "Olaf" : ["top"],
-    "Orianna" : ["mid"],
-    "Ornn" : ["top"],
-    "Pantheon" : ["top", "mid", "jungle", "support"],
-    "Poppy" : ["top", "jungle"],
-    "Pyke" : ["support"],
-    "Qiyana" : ["mid"],
-    "Quinn" : ["adc"],
-    "Rakan" : ["support"],
-    "Rammus" : ["jungle"],
-    "RekSai" : ["jungle"],
-    "Rell" : ["support"],
-    "Renata Glasc" : ["support"],
-    "Renekton" : ["top"],
-    "Rengar" : ["jungle"],
-    "Riven" : ["top"],
-    "Rumble" : ["top", "mid"],
-    "Ryze" : ["mid"],
-    "Samira" : ["adc"],
-    "Sejuani" : ["jungle"],
-    "Senna" : ["support", "adc"],
-    "Seraphine" : ["support", "adc"],
-    "Sett" : ["top"],
-    "Shaco" : ["jungle", "support"],
-    "Shen" : ["support"],
-    "Shyvana" : ["jungle"],
-    "Singed" : ["top"],
-    "Sion" : ["top"],
-    "Sivir" : ["adc"],
-    "Skarner" : ["jungle"],
-    "Smolder" : ["adc", "mid"],
-    "Sona" : ["support"],
-    "Soraka" : ["support"],
-    "Swain" : ["mid", "support"],
-    "Sylas" : ["mid"],
-    "Syndra" : ["mid", "support"],
-    "Tahm Kench" : ["support"],
-    "Taliyah" : ["mid", "jungle"],
-    "Talon" : ["jungle", "mid"],
-    "Taric" : ["support", "mid"],
-    "Teemo" : ["top", "jungle", "support"],
-    "Thresh" : ["support"],
-    "Tristana" : ["adc", "mid"],
-    "Trundle" : ["jungle"],
-    "Tryndamere" : ["top"],
-    "Twisted Fate" : ["mid", "adc"],
-    "Twitch" : ["adc", "support"],
-    "Udyr" : ["jungle"],
-    "Urgot" : ["top"],
-    "Varus" : ["adc"],
-    "Vayne" : ["adc"],
-    "Veigar" : ["mid", "support"],
-    "Velkoz" : ["mid", "support"],
-    "Vex" : ["mid"],
-    "Vi" : ["jungle"],
-    "Viego" : ["jungle"],
-    "Viktor" : ["mid"],
-    "Vladimir" : ["mid"],
-    "Volibear" : ["jungle"],
-    "Warwick" : ["jungle"],
-    "Wukong" : ["top", "jungle"],
-    "Xayah" : ["adc"],
-    "Xerath" : ["mid", "support"],
-    "Xin Zhao" : ["jungle"],
-    "Yasuo" : ["mid", "adc"],
-    "Yone" : ["mid"],
-    "Yorick" : ["top"],
-    "Yuumi" : ["support"],
-    "Zac" : ["jungle", "support"],
-    "Zed" : ["mid", "jungle"],
-    "Zeri" : ["adc"],
-    "Ziggs" : ["adc", "mid"],
-    "Zilean" : ["support"],
-    "Zoe" : ["mid", "support"],
-    "Zyra" : ["support"]
-}
 
-////////////////////SAUVEGARDE DES CHAMPIONS DE L'UTILISATEUR////////////////////
+////////////////////////////////////////////////////////////////////////////////DATA////////////////////////////////////////////////////////////////////////////////
+
+class Champions {
 
 
-// Sauvegarde les champions de l'utilisateur
-function setMyChampionsWithRole(newMyChampionsWithRole)
-{
-    localStorage.setItem("myChampions", newMyChampionsWithRole);
-    return;
-}
-
-// Récupère les champions de l'utilisateur
-function getMyChampionsWithRole()
-{   
-    return localStorage.getItem("myChampions");
-}
-
-function initMyChampionWithRole()
-{
-    if (localStorage.getItem("myChampions") == null)
-    {
-        setMyChampionsWithRole(champWithRole);
+    constructor() {
     }
-    return;
+
+    // Liste des champions
+    // Récupère tous les champions du jeu
+    static getAllChampions() {
+        const allChampions =
+        [
+            {
+                "champion": "Aatrox",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Ahri",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Akali",
+                "lane": [
+                    "top",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Akshan",
+                "lane": [
+                    "adc",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Alistar",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Amumu",
+                "lane": [
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Anivia",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Annie",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Aphelios",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Ashe",
+                "lane": [
+                    "adc",
+                    "support"
+                ]
+            },
+            {
+                "champion": "AurelionSol",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Aurora",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Azir",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Bard",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Belveth",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Blitzcrank",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Brand",
+                "lane": [
+                    "mid",
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Braum",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Briar",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Caitlyn",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Camille",
+                "lane": [
+                    "top",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Cassiopeia",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Chogath",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Corki",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Darius",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Diana",
+                "lane": [
+                    "jungle",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "DrMundo",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Draven",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Ekko",
+                "lane": [
+                    "jungle",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Elise",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Evelynn",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Ezreal",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Fiddlesticks",
+                "lane": [
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Fiora",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Fizz",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Galio",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Gangplank",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Garen",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Gnar",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Gragas",
+                "lane": [
+                    "top",
+                    "mid",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Graves",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Gwen",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Hecarim",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Heimerdinger",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Hwei",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Illaoi",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Irelia",
+                "lane": [
+                    "top",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Ivern",
+                "lane": [
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Janna",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "JarvanIV",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Jax",
+                "lane": [
+                    "top",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Jayce",
+                "lane": [
+                    "top",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Jhin",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Jinx",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "KSante",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Kaisa",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Kalista",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Karma",
+                "lane": [
+                    "support",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Karthus",
+                "lane": [
+                    "jungle",
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Kassadin",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Katarina",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Kayle",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Kayn",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Kennen",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Khazix",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Kindred",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Kled",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "KogMaw",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Leblanc",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Leesin",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Leona",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Lillia",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Lissandra",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Lucian",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Lulu",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Lux",
+                "lane": [
+                    "support",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "MasterYi",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Malphite",
+                "lane": [
+                    "top",
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Malzahar",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Maokai",
+                "lane": [
+                    "support",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Milio",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "MissFortune",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Mordekaiser",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Morgana",
+                "lane": [
+                    "support",
+                    "mid",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Naafiri",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Nami",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Nasus",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Nautilus",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Neeko",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Nidalee",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Nilah",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Nocturne",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Nunu",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Olaf",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Orianna",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Ornn",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Pantheon",
+                "lane": [
+                    "top",
+                    "mid",
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Poppy",
+                "lane": [
+                    "top",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Pyke",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Qiyana",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Quinn",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Rakan",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Rammus",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "RekSai",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Rell",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Renata",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Renekton",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Rengar",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Riven",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Rumble",
+                "lane": [
+                    "top",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Ryze",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Samira",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Sejuani",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Senna",
+                "lane": [
+                    "support",
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Séraphine",
+                "lane": [
+                    "support",
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Sett",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Shaco",
+                "lane": [
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Shen",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Shyvana",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Singed",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Sion",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Sivir",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Skarner",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Smolder",
+                "lane": [
+                    "adc",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Sona",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Soraka",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Swain",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Sylas",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Syndra",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "TahmKench",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Taliyah",
+                "lane": [
+                    "mid",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Talon",
+                "lane": [
+                    "jungle",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Taric",
+                "lane": [
+                    "support",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Teemo",
+                "lane": [
+                    "top",
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Thresh",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Tristana",
+                "lane": [
+                    "adc",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Trundle",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Tryndamere",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Twisted fate",
+                "lane": [
+                    "mid",
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Twitch",
+                "lane": [
+                    "adc",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Udyr",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Urgot",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Varus",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Vayne",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Veigar",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Velkoz",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Vex",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Vi",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Viego",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Viktor",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Vladimir",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Volibear",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Warwick",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Wunkong",
+                "lane": [
+                    "top",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Xayah",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Xerath",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "XinZhao",
+                "lane": [
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Yasuo",
+                "lane": [
+                    "mid",
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Yone",
+                "lane": [
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Yorick",
+                "lane": [
+                    "top"
+                ]
+            },
+            {
+                "champion": "Yuumi",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Zac",
+                "lane": [
+                    "jungle",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Zed",
+                "lane": [
+                    "mid",
+                    "jungle"
+                ]
+            },
+            {
+                "champion": "Zeri",
+                "lane": [
+                    "adc"
+                ]
+            },
+            {
+                "champion": "Ziggs",
+                "lane": [
+                    "adc",
+                    "mid"
+                ]
+            },
+            {
+                "champion": "Zilean",
+                "lane": [
+                    "support"
+                ]
+            },
+            {
+                "champion": "Zoé",
+                "lane": [
+                    "mid",
+                    "support"
+                ]
+            },
+            {
+                "champion": "Zyra",
+                "lane": [
+                    "support"
+                ]
+            }
+        ];
+        return allChampions;
+    }
+
+    // Récupère tous les rôles
+    static getAllLanes()
+    {
+        return ["top", "mid", "jungle", "adc", "support"];
+    }
+
+    // Récupère les champions sauvegardés par l'utilisateur
+    static getSelectedChampions() {
+
+        let selectedChampions = Champions.getAllChampions();
+        if (localStorage.getItem("selectedChampions") != null) {
+            selectedChampions = JSON.parse(localStorage.getItem("selectedChampions"));
+        }
+        return selectedChampions;
+    }
+
+    // Stocke les champions sauvegardés par l'utilisateur
+    static setSelectedChampions(newSelectedChampions) {
+
+        localStorage.setItem("selectedChampions", JSON.stringify(newSelectedChampions));
+        return;
+    }
+
+    static getSelectedLanes() {
+
+        let selectedLanes = Champions.getAllLanes();
+        if (localStorage.getItem("selectedLanes") != null) {
+            selectedLanes = JSON.parse(localStorage.getItem("selectedLanes"));
+        }
+        return selectedLanes;
+    }
+
+    static setSelectedLanes(newSelectedLanes) {
+
+        localStorage.setItem("selectedLanes", JSON.stringify(newSelectedLanes));
+        return;
+    }
+
+    // Ajoute un champion à la liste des champions de l'utilisateur
+    static addOwnerChampion(championToAdd) {
+
+        let ac = Champions.getAllChampions();
+        let oc = Champions.getSelectedChampions();
+        if (oc.find(champ => champ.champion === championToAdd) === -1) {
+            let cToAdd = ac.find(champ => champ.champion === championToAdd);
+            oc.push(cToAdd);
+            Champions.setSelectedChampions(oc);
+        }
+        return;
+    }
+
+    // Supprime un champion à la liste des champions de l'utilisateur
+    static removeOwnerChampion(championToRemove) {
+
+        let oc = Champions.getSelectedChampions();
+        let index = oc.findIndex(champ => champ.champion === championToRemove);
+        if (index !== -1) {
+            oc.splice(index, 1);
+            Champions.setSelectedChampions(oc);
+        }
+        return;
+    }
+
+    // Récupère tous les champions possédés d'une lane donnée
+    static getSelectedChampionsFromLane(lane) {
+
+        let oc = Champions.getSelectedChampions();
+        let list = [];
+        oc.forEach(champ => {
+            if (champ.lane.find((r) => r == lane))
+            {
+                list.push(champ.champion);
+            }
+        });
+
+        return list;
+    }
 }
-const checkboxesChampion = new Map();
-localStorage.clear();                 // Activer cette ligne pour réinitialiser les champions par défaut pour l'utilisateur
-initMyChampionWithRole();
-console.log(getMyChampionsWithRole());  // Pour le debug
+localStorage.clear();
+
 
 
 ////////////////////CORE////////////////////
@@ -230,42 +1191,18 @@ function randomNumberInRange(lastValue, minValue, maxValue)
     return randomNumber;
 }
 
-// Différentes Array pour exploiter les données
-const roles = [];
-//const champions = getChampions();
-const championsTop = [];
-const championsMid = [];
-const championsJungle = [];
-const championsADC = [];
-const championsSupport = [];
-
-// Initialisation des Array de données
-//initChampWithRole();
-console.log(championsTop);      // Pour le debug
-console.log(championsMid);      // Pour le debug
-console.log(championsJungle);   // Pour le debug
-console.log(championsADC);      // Pour le debug
-console.log(championsSupport);  // Pour le debug
-
 // Generation aleatoire du role
 var lastIndexRole = -1;
 var lastNameRole = "";
 var lastIndexChampion = -1;
 var lastNameChampion = "";
+
 function generateRole()
 {
-    getRoles().forEach(e =>
-        {
-            if((document.querySelector("#" + e + ":checked") == "on"))
-            {
-                console.log(document.querySelector("#" + e + ":checked"))
-                roles.push(e);
-            }
-
-        });
-        lastIndexRole = randomNumberInRange(lastIndexRole, 0, (roles.length - 1));
-        console.log(roles);
-    lastNameRole = roles[lastIndexRole];
+    let lanes = Champions.getSelectedLanes();
+    lastIndexRole = randomNumberInRange(lastIndexRole, 0, (lanes.length - 1));
+    console.log(lanes);
+    lastNameRole = lanes[lastIndexRole];
     document.getElementById("randomRole").innerHTML = lastNameRole;
     return;
 }
@@ -273,34 +1210,18 @@ function generateRole()
 // Generation aleatoire du champion
 function generateChampion()
 {
+    let numImgChamp = 0;
     if(lastNameRole != "")
     {
-        let championsList = [];
-        switch (lastNameRole)
-        {
-            case getRoles()[0]:
-                championsList = championsTop;
-                break;
-            case getRoles()[1]:
-                championsList = championsMid;
-                break;
-            case getRoles()[2]:
-                championsList = championsJungle;
-                break;
-            case getRoles()[3]:
-                championsList = championsADC;
-                break;
-            case getRoles()[4]:
-                championsList = championsSupport;
-                break;
-        }
+        let championsList = Champions.getSelectedChampionsFromLane(lastNameRole);
         lastIndexChampion = randomNumberInRange(lastIndexChampion, 0, (championsList.length - 1));
         lastNameChampion = championsList[lastIndexChampion];
     }
     else
     {
-        lastIndexChampion = randomNumberInRange(lastIndexChampion, 0, (champions.length - 1));
-        lastNameChampion = champions[lastIndexChampion];
+        lastIndexChampion = randomNumberInRange(lastIndexChampion, 0, (Champions.getSelectedChampions().length - 1));
+        let champion = Champions.getSelectedChampions()[lastIndexChampion]
+        lastNameChampion = champion.champion;
     }
     document.getElementById("randomChampion").innerHTML = lastNameChampion;
     let imgChamp = document.getElementById("imgChampion");
@@ -327,22 +1248,52 @@ function generateRoleAndChampion()
     return;
 }
 
+/*
+createCheckboxChamp("all", true, "checkboxesChampions")
+*/
+Champions.getAllChampions().forEach(c =>{
+    createCheckboxChamp(c.champion, true, "checkboxesChampions");
+});
+
 // Pop-up
 var popupActive = false;
-function popupRole()
+function popupLanes()
 {
+    if (popupActive == false) {
+        const al = Champions.getAllLanes();
+        const sl = Champions.getSelectedLanes();
+        al.forEach(l => {
+            document.getElementById("checkbox" + l).checked = false;
+        });
+        sl.forEach(l => {
+            document.getElementById("checkbox" + l).checked = true;
+        });
+    }
     popupOpenID("#listRole");
     return;
 }
 
-function popupChampion()
+function popupChampions()
 {
+    if (popupActive == false) {
+        const ac = Champions.getAllChampions();
+        const sc = Champions.getSelectedChampions();
+        ac.forEach(c => {
+            document.getElementById("checkbox" + c.champion).checked = false;
+        });
+        sc.forEach(c => {
+            document.getElementById("checkbox" + c.champion).checked = true;
+        });
+    }
     popupOpenID("#listChampion");
     return;
 }
 
 function popupGenerateRandom()
 {
+    if (popupActive == false) {
+        generateRoleAndChampion();
+    }
     popupOpenID("#randomResult");
     return;
 }
@@ -360,12 +1311,41 @@ function popupOpenID(name)
     }
     else
     {
-        generateRoleAndChampion();
         popup.classList.toggle("open");
         popupActive = true;
         content.classList.toggle("open");
-        console.log(document.querySelector( "#" + "Akali" + ":checked").value);
     }
+    return;
+}
+
+function applyLanes() {
+
+    const al = Champions.getAllLanes();
+    let sl = [];
+    al.forEach(l => {
+        if (document.getElementById("checkbox" + l).checked) {
+            sl.push(l);
+        }
+    });
+    lastIndexRole = -1;
+    lastNameRole = "";
+    Champions.setSelectedLanes(sl);
+    popupLanes();
+    return;
+}
+
+function applyChampions() {
+    const ac = Champions.getAllChampions();
+    let sc = [];
+    ac.forEach(c => {
+        if (document.getElementById("checkbox" + c.champion).checked) {
+            sc.push(c);
+        }
+    });
+    lastIndexChampion = -1;
+    lastNameChampion = "";
+    Champions.setSelectedChampions(sc);
+    popupChampions();
     return;
 }
 
@@ -378,22 +1358,15 @@ function createCheckboxChamp(name, isChecked, containerId)
     let newCheckbox = document.createElement("input");
     newCheckbox.type = "checkbox";
     newCheckbox.name = "checkbox";
-    newCheckbox.id = name;
+    newCheckbox.id = "checkbox" + name;
     newCheckbox.checked = isChecked;
     let newP = document.createElement("p");
     newP.innerHTML = name;
-    checkboxesChampion.set(name, isChecked);
     newLabel.appendChild(newCheckbox);
     newLabel.appendChild(newP);
     document.getElementById(containerId).appendChild(newLabel);
     return;
 }
-/*
-createCheckboxChamp("all", true, "testProut")
-champions.forEach(e =>{
-    createCheckboxChamp(e, true, "testProut");
-});
-*/
 
 const openFormButton = document.getElementById("contactButton");
 const modal = document.getElementById("popupForm");
@@ -430,7 +1403,6 @@ function openThankYouPopup() {
 function closeAllPopups() {
   contactPopup.style.display = "none";
   thankYouPopup.style.display = "none";
-  thankYouPopup.style.border = "none";
 }
 
 // Réinitialiser le formulaire
@@ -447,9 +1419,9 @@ contactForm.addEventListener("submit", function (event) {
   thankYouPopup.style.display = "flex";
   //openThankYouPopup(); // Ouvre le popup de remerciement
   resetContactForm(); // Réinitialise le formulaire
-  setTimeout(function() {
-    thankYouPopup.style.display = "none";
-  }, 3000); // Ferme le popup de remerciement après 3 secondes
+  //setTimeout(function() {
+    //thankYouPopup.style.display = "none";
+  //}, 3000); // Ferme le popup de remerciement après 3 secondes
 });
 
 // Fermer les popups lorsque l'utilisateur clique sur "close"
@@ -463,9 +1435,3 @@ window.addEventListener("click", function (event) {
     closeAllPopups();
   }
 });
-const champ = new Champions();
-if (champ.getRoles() != null){
-console.log("Okkkkkkkk");
-} else {
-    console.log("Noooooooooon");
-}

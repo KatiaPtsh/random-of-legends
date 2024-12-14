@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="./style.css"/>
-        <!--<script type="module" src="./Champion.js"></script>--->
         <script src="./app.js" defer></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +15,8 @@
 
 
             <div class="containerButtons">
-                <button class="buttonStyle" onclick=popupRole()>Lane</button></br>
-                <button class="buttonStyle" onclick=popupChampion()>Champion</button></br>
+                <button class="buttonStyle" onclick=popupLanes()>Lane</button></br>
+                <button class="buttonStyle" onclick=popupChampions()>Champion</button></br>
                 <button class="buttonStyle" onclick=popupGenerateRandom()>Random</button>
             </div>
 
@@ -44,6 +43,7 @@
             </div>
             <div id="thankYouPopup" class="modal thankyoumodal" style="display: none;">
                 <div class="modal-content thankyoupopup">
+                  <span class="close">&times;</span>
                   <p>Thank you for your message! It will be processed as soon as possible.</p>
                 </div>
               </div>
@@ -58,16 +58,16 @@
             <div id="popup-content-role">
                 <div id="listRole">
                     <!--<label class="checkboxStyle"><input type="checkbox" name="checkbox">All</label>-->
-                    <label id = "top" class="checkboxStyle"><input type="checkbox" name="checkbox" checked><p>Top</p></label>
-                    <label id = "mid" class="checkboxStyle"><input type="checkbox" name="checkbox" checked><p>Mid</p></label>
-                    <label id = "jungle" class="checkboxStyle"><input type="checkbox" name="checkbox" checked><p>Jungle</p></label>
-                    <label id = "adc" class="checkboxStyle"><input type="checkbox" name="checkbox" checked><p>ADC</p></label>
-                    <label id = "support" class="checkboxStyle"><input type="checkbox" name="checkbox" checked><p>Support</p></label>
+                    <label id = "top" class="checkboxStyle"><input id = "checkboxtop" type="checkbox" name="checkbox"><p>Top</p></label>
+                    <label id = "mid" class="checkboxStyle"><input id = "checkboxmid"type="checkbox" name="checkbox"><p>Mid</p></label>
+                    <label id = "jungle" class="checkboxStyle"><input id = "checkboxjungle" type="checkbox" name="checkbox"><p>Jungle</p></label>
+                    <label id = "adc" class="checkboxStyle"><input id = "checkboxadc" type="checkbox" name="checkbox"><p>ADC</p></label>
+                    <label id = "support" class="checkboxStyle"><input id = "checkboxsupport" type="checkbox" name="checkbox"><p>Support</p></label>
                     <div class="buttonBot">
-                        <button class="buttonPopup" onclick="">Appliquer</button></br>
+                        <button class="buttonPopup" onclick=applyLanes()>Appliquer</button></br>
                     </div>
                     <div class="barButtons">
-                        <button class="popup-exit" onclick=popupRole()>x</button>
+                        <button class="popup-exit" onclick=popupLanes()>x</button>
                     </div>
                 </div>
             </div>
@@ -75,12 +75,12 @@
             <!-- CHAMPION -->
             <div id="popup-content-champion">
                 <div id="listChampion">
-                    <p id="testProut"></p>
+                    <p id="checkboxesChampions"></p>
                     <div class="buttonBot">
-                        <button class="buttonPopup" onclick="">Appliquer</button></br>
+                        <button class="buttonPopup" onclick=applyChampions()>Appliquer</button></br>
                     </div>
                     <div class="barButtons">
-                        <button class="popup-exit" onclick=popupChampion()>x</button>
+                        <button class="popup-exit" onclick=popupChampions()>x</button>
                     </div>
                 </div>
             </div>
