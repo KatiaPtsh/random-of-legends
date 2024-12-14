@@ -81,7 +81,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "AurelionSol",
+                "champion": "Aurelion Sol",
                 "lane": [
                     "mid"
                 ]
@@ -452,7 +452,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "Leesin",
+                "champion": "LeeSin",
                 "lane": [
                     "jungle"
                 ]
@@ -495,7 +495,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "MasterYi",
+                "champion": "Master Yi",
                 "lane": [
                     "jungle"
                 ]
@@ -528,7 +528,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "MissFortune",
+                "champion": "Miss Fortune",
                 "lane": [
                     "adc"
                 ]
@@ -735,7 +735,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "Séraphine",
+                "champion": "Seraphine",
                 "lane": [
                     "support",
                     "adc"
@@ -890,7 +890,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "Twisted fate",
+                "champion": "Twisted Fate",
                 "lane": [
                     "mid",
                     "adc"
@@ -1068,7 +1068,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "Zoé",
+                "champion": "Zoe",
                 "lane": [
                     "mid",
                     "support"
@@ -1082,6 +1082,17 @@ class Champions {
             }
         ];
         return allChampions;
+    }
+
+    static getNameWithoutSpace(name)
+    {
+        let nameSplit = name.split(" ");
+        let nameChampTmp = nameSplit[0];
+        if (nameSplit[1] != undefined)
+        {
+            nameChampTmp = nameChampTmp + nameSplit[1];
+        }
+        return nameChampTmp;
     }
 
     // Récupère tous les rôles
@@ -1226,13 +1237,8 @@ function generateChampion()
     document.getElementById("randomChampion").innerHTML = lastNameChampion;
     let imgChamp = document.getElementById("imgChampion");
     console.log(lastNameChampion);
-    let nameSplit = lastNameChampion.split(" ");
-    let nameChampTmp = nameSplit[0];
-    if (nameSplit[1] != undefined)
-    {
-        nameChampTmp = nameChampTmp + nameSplit[1];
-    }
-    else if(nameChampTmp == "Wukong")
+    let nameChampTmp = Champions.getNameWithoutSpace(lastNameChampion);
+    if(nameChampTmp === "Wukong")
     {
         nameChampTmp = "MonkeyKing";
     }    
@@ -1241,10 +1247,16 @@ function generateChampion()
     return;
 }
 
+
+// Génération du role et du champion
 function generateRoleAndChampion()
 {
     generateRole();
     generateChampion();
+    document.querySelectorAll('.refresh-btn').forEach(function(btn) {
+        btn.addEventListener('click', generateRoleAndChampion);
+        btn.blur();
+    });
     return;
 }
 
@@ -1257,53 +1269,17 @@ Champions.getAllChampions().forEach(c =>{
 
 // Pop-up
 var popupActive = false;
-function popupLanes()
-{
-    if (popupActive == false) {
-        const al = Champions.getAllLanes();
-        const sl = Champions.getSelectedLanes();
-        al.forEach(l => {
-            document.getElementById("checkbox" + l).checked = false;
-        });
-        sl.forEach(l => {
-            document.getElementById("checkbox" + l).checked = true;
-        });
-    }
-    popupOpenID("#listRole");
-    return;
-}
+var lastPopup = "";
 
-function popupChampions()
-{
-    if (popupActive == false) {
-        const ac = Champions.getAllChampions();
-        const sc = Champions.getSelectedChampions();
-        ac.forEach(c => {
-            document.getElementById("checkbox" + c.champion).checked = false;
-        });
-        sc.forEach(c => {
-            document.getElementById("checkbox" + c.champion).checked = true;
-        });
-    }
-    popupOpenID("#listChampion");
-    return;
-}
-
-function popupGenerateRandom()
-{
-    if (popupActive == false) {
-        generateRoleAndChampion();
-    }
-    popupOpenID("#randomResult");
-    return;
-}
-
+// Fais apparaitre et disparaitre la popup
 function popupOpenID(name)
 {
-    let popup = document.querySelector("#popup-overlay");
-    let content = document.querySelector(name);
+    let popup = document.getElementById("popup-overlay");
+    let content = document.getElementById(name);
     if(popupActive)
     {
+        content = document.getElementById(lastPopup);
+        lastPopup = "";
         popup.classList.toggle("open");
         popupActive = false;
         document.getElementById("imgChampion").style.backgroundImage = "none";
@@ -1311,6 +1287,7 @@ function popupOpenID(name)
     }
     else
     {
+        lastPopup = name;
         popup.classList.toggle("open");
         popupActive = true;
         content.classList.toggle("open");
@@ -1318,12 +1295,44 @@ function popupOpenID(name)
     return;
 }
 
+function popupClose()
+{
+    popupOpenID("");
+    document.querySelectorAll('.close-btn').forEach(function(btn) {
+        btn.addEventListener('click', popupClose);
+        btn.blur();
+    });
+    return;
+}
+const closeButtons = document.querySelectorAll('.close-btn');
+closeButtons.forEach(function(btn) {
+    btn.addEventListener('click', popupClose);
+});
+
+// Popup des lanes
+function popupLanes()
+{
+    if (popupActive == false) {
+        const al = Champions.getAllLanes();
+        const sl = Champions.getSelectedLanes();
+        al.forEach(l => {
+            document.getElementById("checkbox-lane-" + l).checked = false;
+        });
+        sl.forEach(l => {
+            document.getElementById("checkbox-lane-" + l).checked = true;
+        });
+    }
+    popupOpenID("list-lane");
+    return;
+}
+document.getElementById('btn-lane').addEventListener('click', popupLanes);
+
 function applyLanes() {
 
     const al = Champions.getAllLanes();
     let sl = [];
     al.forEach(l => {
-        if (document.getElementById("checkbox" + l).checked) {
+        if (document.getElementById("checkbox-lane-" + l).checked) {
             sl.push(l);
         }
     });
@@ -1334,11 +1343,35 @@ function applyLanes() {
     return;
 }
 
+
+// Popup des champions
+function popupChampions()
+{
+    if (popupActive == false) {
+        const ac = Champions.getAllChampions();
+        const sc = Champions.getSelectedChampions();
+        let nameChampion = "";
+        ac.forEach(c => {
+            nameChampion = Champions.getNameWithoutSpace(c.champion);
+            document.getElementById("checkbox-" + nameChampion).checked = false;
+        });
+        sc.forEach(c => {
+            nameChampion = Champions.getNameWithoutSpace(c.champion);
+            document.getElementById("checkbox-" + nameChampion).checked = true;
+        });
+    }
+    popupOpenID("list-champion");
+    return;
+}
+document.getElementById('btn-champion').addEventListener('click', popupChampions);
+
 function applyChampions() {
     const ac = Champions.getAllChampions();
     let sc = [];
+    let nameChampion = "";
     ac.forEach(c => {
-        if (document.getElementById("checkbox" + c.champion).checked) {
+        nameChampion = Champions.getNameWithoutSpace(c.champion);
+        if (document.getElementById("checkbox-" + nameChampion).checked) {
             sc.push(c);
         }
     });
@@ -1350,6 +1383,27 @@ function applyChampions() {
 }
 
 
+// Popup pour faire apparaitre le champion tiré au hasard
+function popupGenerateRandom()
+{
+    if (popupActive == false) {
+        generateRoleAndChampion();
+    }
+    popupOpenID("randomResult");
+    return;
+}
+document.getElementById('btn-random').addEventListener('click', popupGenerateRandom);
+
+
+// Popup pour le formulaire de contact
+function popupContact() {
+
+    popupOpenID("contact-content");
+    return;
+}
+document.getElementById('btn-contact').addEventListener('click', popupContact);
+
+
 // Création d'une nouvelle checkbox
 function createCheckboxChamp(name, isChecked, containerId)
 {
@@ -1358,7 +1412,8 @@ function createCheckboxChamp(name, isChecked, containerId)
     let newCheckbox = document.createElement("input");
     newCheckbox.type = "checkbox";
     newCheckbox.name = "checkbox";
-    newCheckbox.id = "checkbox" + name;
+    let nameChampTmp = Champions.getNameWithoutSpace(name);
+    newCheckbox.id = "checkbox-" + nameChampTmp;
     newCheckbox.checked = isChecked;
     let newP = document.createElement("p");
     newP.innerHTML = name;
@@ -1368,7 +1423,8 @@ function createCheckboxChamp(name, isChecked, containerId)
     return;
 }
 
-const openFormButton = document.getElementById("contactButton");
+/*
+const openFormButton = document.getElementById("btn-contact");
 const modal = document.getElementById("popupForm");
 const closeButton = document.getElementsByClassName("close")[0];
 
@@ -1389,10 +1445,7 @@ window.onclick = function(event) {
 
 
 // Références des éléments
-const contactForm = document.getElementById("contactForm");
-const contactPopup = document.getElementById("popupForm");
 const thankYouPopup = document.getElementById("thankYouPopup");
-const closeButtons = document.querySelectorAll(".close");
 
 // Ouvrir le popup de remerciement
 function openThankYouPopup() {
@@ -1424,10 +1477,6 @@ contactForm.addEventListener("submit", function (event) {
   //}, 3000); // Ferme le popup de remerciement après 3 secondes
 });
 
-// Fermer les popups lorsque l'utilisateur clique sur "close"
-closeButtons.forEach((btn) => {
-  btn.addEventListener("click", closeAllPopups);
-});
 
 // Fermer les popups lorsqu'on clique en dehors
 window.addEventListener("click", function (event) {
@@ -1435,3 +1484,4 @@ window.addEventListener("click", function (event) {
     closeAllPopups();
   }
 });
+*/

@@ -10,77 +10,79 @@
     </head>
     <body>
 
+        <!-- INDEX CONTENT -->
         <div id="mainMenu">
             <h1 id="titrePage"><center>Random</center><center> of </center><center>Legends</center></h1>
 
-
             <div class="containerButtons">
-                <button class="buttonStyle" onclick=popupLanes()>Lane</button></br>
-                <button class="buttonStyle" onclick=popupChampions()>Champion</button></br>
-                <button class="buttonStyle" onclick=popupGenerateRandom()>Random</button>
+                <button id="btn-lane" class="btn-main">Lane</button></br>
+                <button id="btn-champion" class="btn-main">Champion</button></br>
+                <button id="btn-random" class="btn-main">Random</button>
             </div>
 
-            <!-- CONTACT -->
-
-            <button id="contactButton">Contact</button>
-
-            <div id="popupForm" class="modal">
-              <div class="modal-content">
-                <span class="close">&times;</span>
-                <form id="contactForm">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="name" required>
-            
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required>
-            
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" required=""></textarea>
-            
-                  <button class="sendButton" type="submit">Send</button>
-                </form>
-              </div>
-            </div>
-            <div id="thankYouPopup" class="modal thankyoumodal" style="display: none;">
-                <div class="modal-content thankyoupopup">
-                  <span class="close">&times;</span>
-                  <p>Thank you for your message! It will be processed as soon as possible.</p>
-                </div>
-              </div>
-            
+            <button id="btn-contact"class="btn-main">Contact</button>
 
         </div>
 
         <!-- POPUP -->
         <div id="popup-overlay">
 
+            <!-- CONTACT -->
+            <div id="popup-content-contact">
+                <div id="contact-content" class="formContactStyle">
+                    <form id="contactForm">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required=""></textarea>
+                
+                        <button class="sendButton" type="submit">Send</button>
+                    </form>
+                    <div class="barButtons">
+                        <button class="close-btn head-btn">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div id="thankYouPopup" class="popup-content-contact thankyoumodal" style="display: none;">
+                <div class="formContactStyle thankyoupopup">
+                    <div class="barButtons">
+                        <button class="close-btn head-btn">&times;</button>
+                    </div>
+                    <p>Thank you for your message! It will be processed as soon as possible.</p>
+                </div>
+            </div>
+
             <!-- ROLE -->
-            <div id="popup-content-role">
-                <div id="listRole">
+            <div id="popup-content-lane">
+                <div id="list-lane">
                     <!--<label class="checkboxStyle"><input type="checkbox" name="checkbox">All</label>-->
-                    <label id = "top" class="checkboxStyle"><input id = "checkboxtop" type="checkbox" name="checkbox"><p>Top</p></label>
-                    <label id = "mid" class="checkboxStyle"><input id = "checkboxmid"type="checkbox" name="checkbox"><p>Mid</p></label>
-                    <label id = "jungle" class="checkboxStyle"><input id = "checkboxjungle" type="checkbox" name="checkbox"><p>Jungle</p></label>
-                    <label id = "adc" class="checkboxStyle"><input id = "checkboxadc" type="checkbox" name="checkbox"><p>ADC</p></label>
-                    <label id = "support" class="checkboxStyle"><input id = "checkboxsupport" type="checkbox" name="checkbox"><p>Support</p></label>
+                    <label id = "top" class="checkboxStyle"><input id = "checkbox-lane-top" type="checkbox" name="checkbox"><p>Top</p></label>
+                    <label id = "mid" class="checkboxStyle"><input id = "checkbox-lane-mid"type="checkbox" name="checkbox"><p>Mid</p></label>
+                    <label id = "jungle" class="checkboxStyle"><input id = "checkbox-lane-jungle" type="checkbox" name="checkbox"><p>Jungle</p></label>
+                    <label id = "adc" class="checkboxStyle"><input id = "checkbox-lane-adc" type="checkbox" name="checkbox"><p>ADC</p></label>
+                    <label id = "support" class="checkboxStyle"><input id = "checkbox-lane-support" type="checkbox" name="checkbox"><p>Support</p></label>
                     <div class="buttonBot">
-                        <button class="buttonPopup" onclick=applyLanes()>Appliquer</button></br>
+                        <button class="btn-popup" onclick=applyLanes()>Appliquer</button></br>
                     </div>
                     <div class="barButtons">
-                        <button class="popup-exit" onclick=popupLanes()>x</button>
+                        <button class="close-btn head-btn">&times;</button>
                     </div>
                 </div>
             </div>
 
             <!-- CHAMPION -->
             <div id="popup-content-champion">
-                <div id="listChampion">
+                <div id="list-champion">
                     <p id="checkboxesChampions"></p>
                     <div class="buttonBot">
-                        <button class="buttonPopup" onclick=applyChampions()>Appliquer</button></br>
+                        <button class="btn-popup" onclick=applyChampions()>Appliquer</button></br>
                     </div>
                     <div class="barButtons">
-                        <button class="popup-exit" onclick=popupChampions()>x</button>
+                        <button class="close-btn head-btn">&times;</button>
                     </div>
                 </div>
             </div>
@@ -97,8 +99,8 @@
                         <!--<p class="internetlost">Connexion internet lost</p>-->
                     </div>
                     <div class="barButtons">
-                        <!--   ICONE RAFRAICHIR <a class="fa" href="javascript:void(0)" onclick="generateRoleAndChampion()">⎌</a>-->
-                        <button class="popup-exit" onclick=popupGenerateRandom()>x</button>
+                        <button class="refresh-btn head-btn" onclick="generateRoleAndChampion()">⟳</button>
+                        <button class="close-btn head-btn">&times;</button>
                     </div>
                 </div>
             </div>

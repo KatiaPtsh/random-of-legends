@@ -25,6 +25,12 @@
   cursor: url("./img/Porocool.png"), auto;
 }
 
+*:focus
+{
+  outline: none !important;
+  border-style: solid !important;
+}
+
 body
 {
   -webkit-box-align: center;
@@ -94,10 +100,81 @@ body
   };
 }
 
+button
+{
+  font-family: 'Bryndan Write';
+}
+
+button:hover, input[type="checkbox"]:hover, label:hover
+{
+  cursor: url("./img/roar.png"), auto;
+}
+
+
+/* PAGE PRINCIPALE */
+
+
+/* Boutons */
+.containerButtons
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.btn-main
+{
+  height: 75px;
+  width: 300px;
+  background-color: #8ca5cc;
+  color: #eeeeee;
+  border-radius: 20px;
+  border: 2px solid #6a83aa;
+  font-size: 250%;
+  display: block;
+}
+
+.btn-main:active, #btn-contact:active
+{
+  background-color: #aec7ee;
+}
+
+.btn-main:hover, #btn-contact:hover
+{
+  background-color: #9db6dd;
+}
+
+.btn-main:focus, #btn-contact:focus
+{
+  background-color: #9db6dd;
+  border-color: #486188;
+  border-width: 3px;
+}
+
+#btn-contact {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  height: 40px;
+  width: 120px;
+  background-color: #8ca5cc;
+  color: #eeeeee;
+  border-radius: 20px;
+  border: 2px solid #6a83aa;
+  font-size: 100%;
+  text-align: center;
+  line-height: 1.5;
+  display: inline-block;
+  padding: 5px 20px;
+}
+
+/* Checkbox */
+
 .checkboxStyle
 {
-  cursor: pointer;
-  initial-value: "yes";
+  /*initial-value: "yes";*/
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -137,8 +214,6 @@ body
 
 .checkboxChamp
 {
-  cursor: pointer;
-  initial-value: "yes";
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -176,50 +251,21 @@ body
   width: 100%;
 }
 
-.containerButtons
-{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: auto;
-}
 
-.buttonStyle
-{
-  height: 75px;
-  width: 300px;
-  background-color: #8ca5cc;
-  color: #eeeeee;
-  border-radius: 20px;
-  border: 2px solid #6a83aa;
-  font-size: 250%;
-  display: block;
-  font-family: 'Bryndan Write';
-}
+/* POPUP */
 
-.buttonStyle:hover
-{
-  cursor: url("./img/roar.png"), auto;
-  background-color: #9db6dd;
-}
-
-.buttonStyle:active
-{
-  background-color: #9db6dd;
-}
-
+/* Gère l'ouverture et la fermeture de la popup */
 #popup-overlay
 {
   position: absolute;
   background-color:#8ca5cc;
-  background-size: cover;
-  z-index: 98;
+  z-index: 1000;
   display: none;
   color: #eeeeee;
   border-radius: 20px;
   border: 3px solid #6a83aa;
   margin: 10%;
-  margin-top: 300px;
+  /*margin-top: 300px;*/
 }
 
 #popup-overlay.open
@@ -227,46 +273,78 @@ body
   display: flex !important;
 }
 
-#popup-content-role
+/* Popup contact */
+#popup-content-contact
 {
   font-size: 250%;
 }
 
+#contact-content
+{
+  display: none;
+  padding: 0;
+}
+
+#contact-content.open
+{
+  display: inherit;
+  padding: 30px;
+  margin-bottom: -9%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: 800px;
+  font-size: 70%;
+}
+
+/* Popup lane */
+#popup-content-lane
+{
+  font-size: 250%;
+}
+
+#list-lane
+{
+  display: none;
+  padding: 0;
+}
+
+#list-lane.open
+{
+  display: inherit;
+  padding: 30px;
+  margin-bottom: -9%;
+}
+
+
+/* Popup champion */
 #popup-content-champion
 {
   font-size: 250%;
 }
 
-#popup-content-result
-{
-  font-size: 250%;
-}
-
-#listRole
+#list-champion
 {
   display: none;
   padding: 0;
 }
 
-#listRole.open
-{
-  display: inherit;
-  padding: 30px;
-  margin-bottom: -9%;
-
-}
-
-#listChampion
-{
-  display: none;
-  padding: 0;
-}
-
-#listChampion.open
+#list-champion.open
 {
   display: inherit;
   padding: 30px;
   margin-bottom: -5%;
+}
+
+
+/* Popup result du tirage du champion aleatoire */
+#popup-content-result
+{
+  font-size: 250%;
 }
 
 #randomResult
@@ -280,6 +358,9 @@ body
   display: inherit;
   padding: 10px;
 }
+
+
+/* Autres parametres de popup */
 
 .titrePopup
 {
@@ -321,7 +402,8 @@ body
 .barButtons
 {
   position:absolute;
-  top:-11px;
+  display: flex;
+  top:-7px;
   right:-7px;
   text-decoration:none;
   color:#6a83aa;
@@ -329,44 +411,60 @@ body
   font-size: 40px;
 }
 
-.popup-exit
+.head-btn
 {
-  margin: 0;
-  margin-right: 10px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
   padding: 0;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 1px;
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: lowercase;
+  font-size: 28px;
+  font-weight: bold;
+  color: #cccccc;
   background-color: #536685;
   border-radius: 5px;
-  border: 2px solid #eeeeee;
-  color:#eeeeee;
+  border: none;
 }
 
-.popup-exit:hover
-{
-  color:#dddddd;
-  border-color: #dddddd;
-  background-color: #424564;
-  cursor: pointer;
-}
-
-.popup-exit:active
+.head-btn:active
 {
   color:#bbbbbb;
-  border-color: #bbbbbb;
+  border: 1px solid #bbbbbb;
   background-color: #646786;
 }
 
-.fa
+.head-btn:hover
 {
-  color:#313453;
+  color:#dddddd;
+  border: none;
+  background-color: #424564;
 }
 
-.buttonPopup
+.head-btn:focus
+{
+  color:#dddddd;
+  border: none;
+  background-color: #424564;
+}
+
+.refresh-btn {
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 6%;
+}
+
+.close-btn {
+  font-weight: 50;
+  font-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1%;
+}
+
+.btn-popup
 {
   height: 30px;
   width: 130px;
@@ -380,15 +478,14 @@ body
   margin: 2%;
 }
 
-.buttonPopup:hover
+.btn-popup:hover
 {
   color:#dddddd;
   border-color: #dddddd;
-  cursor: pointer;
   background-color: #424564;
 }
 
-.buttonPopup:active
+.btn-popup:active
 {
   color:#bbbbbb;
   border-color: #bbbbbb;
@@ -402,70 +499,17 @@ body
   flex-direction: column;
 }
 
-
-#contactButton {
-  position: fixed;
-  bottom: 20px;  
-  right: 20px;
-  z-index: 1000;
-  height: 40px;
-  width: 120px;
-  background-color: #8ca5cc;
-  color: #eeeeee;
-  border-radius: 20px;
-  border: 2px solid #6a83aa;
-  font-size: 100%;
-  font-family: 'Bryndan Write';
-  text-align: center;
-  line-height: 1.5;
-  display: inline-block;
-  padding: 5px 20px;
-}
-
-button:hover
-{
-  cursor: url("./img/roar.png"), auto;
-  background-color: #9db6dd;
-}
-
-
-.modal {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position : fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 500px;
-  width: 700px;
-  background-color: #8ca5cc;
-  color: #eeeeee;
-  border-radius: 20px;
-  border: 2px solid #6a83aa;
-  font-size: 70%;
-  z-index: 999;
-  font-family: 'Bryndan Write';
-  margin-top: 3%;
-}
-
-.modal.open {
-  display: flex;
-}
-
-.modal-content {
+.formContactStyle {
   display: flex;
   flex-direction: column;
   background-color: #8ca5cc;
   color: #eeeeee;
   border-radius: 20px;
-  padding: 0px;
+  padding: 20px;
   width: 100%;
   max-width: 2000px;
   font-size: 200%;
   margin-right: 20px;
-  padding-left: 15px;
-  padding-right: 20%;
 }
 
 textarea {
@@ -481,7 +525,7 @@ textarea {
 }
 
 label[for="name"] {
-  margin-bottom: 5px; /* Adds space between label and input */
+  margin-bottom: 10px; /* Adds space between label and input */
   text-align: left;
   display: block;
   margin-bottom: 5px;
@@ -545,7 +589,6 @@ input[type="text"], input[type="message"] {
   box-shadow: none;
   border: none;
   font-family: 'Bryndan Write';
-  margin-bottom: 0;
 }
 
 #thankYouPopup {
@@ -555,13 +598,14 @@ input[type="text"], input[type="message"] {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  background: none;
+  background-color: rgba(0, 0, 0, 0.5); /* optionnel, pour l'arrière-plan */
   padding: 20px; /* Ajoutez du padding pour le popup */
 }
 
 #thankYouPopup .modal-content {
   display: inline-block; /* Ajuste la taille en fonction du contenu */
   padding: 20px;
+  /*background-color: #8ca5cc;*/
   border-radius: 10px;
   text-align: center;
   font-size: 2.5em; /* Ajuste la taille du texte si nécessaire */
@@ -581,33 +625,3 @@ input[type="text"], input[type="message"] {
   border-color: #dddddd;
   background-color: #6a83aa;
 }
-
-.close {
-  color: #cccccc;
-  background-color: #536685;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  height: 15px;
-  padding: 5px;
-  padding-bottom: 3px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  line-height: 30px;
-  border-radius: 5px;
-}
-
-.close:hover {
-  cursor: url("./img/roar.png"), auto;
-  background-color: #9db6dd;
-  color:#dddddd;
-  border-color: #dddddd;
-  background-color: #6a83aa;
-}
-
-
-
