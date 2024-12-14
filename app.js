@@ -984,7 +984,7 @@ class Champions {
                 ]
             },
             {
-                "champion": "Wunkong",
+                "champion": "Wukong",
                 "lane": [
                     "top",
                     "jungle"
